@@ -25,8 +25,6 @@ delete headers["Connection"]
 delete headers["Range"]
 delete $response.headers["Content-Range"]
 
-let body = $response.body
-
 /***************** Processing *****************/
 !(async () => {
 	[$.Platform, $.Verify, $.Advanced, $.Settings, $.Cache] = await setENV(url, DataBase);
@@ -35,7 +33,7 @@ let body = $response.body
 		let [Indices = {}, Cache = {}] = await getCache($.Cache);
 		if (Indices.Index == -1) $.done();
 		// 获取序列化VTT
-		let OriginVTT = VTT.parse(body);
+		let OriginVTT = VTT.parse($response.body);
 		// 创建双语字幕JSON
 		let DualSub = {};
 		// 获取类型
@@ -96,7 +94,7 @@ let body = $response.body
 			};
 			async function combineText(text1, text2, position) { return (position == "Forward") ? text2 + "\n" + text1 : (position == "Reverse") ? text1 + "\n" + text2 : text2 + "\n" + text1; }
 		};
-		body = VTT.stringify(DualSub);
+		$response.body = VTT.stringify(DualSub);
 		$.done($response)
 	}
 })()
