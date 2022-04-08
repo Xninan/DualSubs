@@ -96,6 +96,7 @@ delete headers["Range"]
 		$response.body = VTT.stringify(DualSub);
 		if ($response.headers["Content-Range"]) {
 			let length = new Blob([$response.body]).size
+			$.log(`🚧 ${$.name}, Content-Range`, `length: ${length}`, "")
 			$response.headers["Content-Range"] = `bytes 0-${length - 1}/${length}`
 		}
 		$.done($response)
