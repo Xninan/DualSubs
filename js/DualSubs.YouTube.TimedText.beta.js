@@ -53,7 +53,7 @@ else $.done($request);
 	}
 })()
 	.catch((e) => $.logErr(e))
-	.finally(() => $.done({ body }))
+	.finally(() => $.done())
 
 /***************** Fuctions *****************/
 // Function 1
