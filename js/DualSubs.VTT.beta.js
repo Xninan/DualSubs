@@ -97,11 +97,11 @@ let body = $response.body
 			async function combineText(text1, text2, position) { return (position == "Forward") ? text2 + "\n" + text1 : (position == "Reverse") ? text1 + "\n" + text2 : text2 + "\n" + text1; }
 		};
 		body = VTT.stringify(DualSub);
-		$.done({ body })
+		$.done($response)
 	}
 })()
 	.catch((e) => $.logErr(e))
-	.finally(() => $.done({ body }))
+	.finally(() => $.done($response))
 
 /***************** Fuctions *****************/
 // Function 1
