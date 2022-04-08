@@ -23,6 +23,7 @@ let headers = $request.headers
 delete headers["Host"]
 delete headers["Connection"]
 delete headers["Range"]
+delete $response.headers["Accept-Ranges"]
 delete $response.headers["Content-Range"]
 
 /***************** Processing *****************/
