@@ -94,7 +94,7 @@ delete headers["Range"]
 			async function combineText(text1, text2, position) { return (position == "Forward") ? text2 + "\n" + text1 : (position == "Reverse") ? text1 + "\n" + text2 : text2 + "\n" + text1; }
 		};
 		$response.body = VTT.stringify(DualSub);
-		if ($response.headers["Content-Range"]) $response.headers["Content-Range"] = `bytes 0-${Buffer.byteLength($response.body, 'utf8') - 1}/${Buffer.byteLength($response.body, 'utf8')}`
+		if ($response.headers["Content-Range"]) $response.headers["Content-Range"] = "bytes */*";
 		$.done($response)
 	}
 })()
