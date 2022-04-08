@@ -24,6 +24,10 @@ delete headers["Host"]
 delete headers["Connection"]
 delete headers["Range"]
 
+$response.headers["Content-Type"] = "text/vtt"
+delete $response.headers["Accept-Ranges"]
+delete $response.headers["Content-Range"]
+
 /***************** Processing *****************/
 !(async () => {
 	[$.Platform, $.Verify, $.Advanced, $.Settings, $.Cache] = await setENV(url, DataBase);
@@ -94,7 +98,7 @@ delete headers["Range"]
 			async function combineText(text1, text2, position) { return (position == "Forward") ? text2 + "\n" + text1 : (position == "Reverse") ? text1 + "\n" + text2 : text2 + "\n" + text1; }
 		};
 		$response.body = VTT.stringify(DualSub);
-		if ($response.headers["Content-Range"]) $response.headers["Content-Range"] = "bytes */*";
+		//if ($response.headers["Content-Range"]) $response.headers["Content-Range"] = "bytes */*";
 		$.done($response)
 	}
 })()
