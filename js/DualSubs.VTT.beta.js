@@ -23,8 +23,7 @@ let headers = $request.headers
 delete headers["Host"]
 delete headers["Connection"]
 delete headers["Range"]
-delete $response.headers["Accept-Ranges"]
-delete $response.headers["Content-Range"]
+if ($response.headers["Content-Range"]) $response.headers["Content-Range"] = `bytes 0-${$response.headers["Content-Length"] - 1}/${$response.headers["Content-Length"]}`
 
 /***************** Processing *****************/
 !(async () => {
