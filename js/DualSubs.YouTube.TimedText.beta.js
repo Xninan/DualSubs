@@ -181,7 +181,7 @@ async function switchLangCode(platform = "", langCode = "", database) {
 				DualSub.body[index0].text = c;
 			} else 
 			*/
-			DualSub.events[index0]?.segs[0].utf8 = options.includes("Reverse") ? `${text2}\n${text1}` : `${text1}\n${text2}`;
+			DualSub.events[index0].segs[0].utf8 = options.includes("Reverse") ? `${text2}\n${text1}` : `${text1}\n${text2}`;
 			//DualSub.body[index0].tStartMs = options.includes("Reverse") ? timeStamp2 : timeStamp1;
 			//DualSub.body[index0].index = options.includes("Reverse") ? index2 : index1;
 			//index1++;
