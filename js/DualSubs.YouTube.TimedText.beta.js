@@ -17,7 +17,7 @@ if (method == "OPTIONS") $.done();
 
 const headers = $request.headers
 
-if (typeof $response !== "undefined") var body = $response.body
+if (typeof $response !== undefined) var body = $response.body
 else $.done();
 
 /***************** Processing *****************/
