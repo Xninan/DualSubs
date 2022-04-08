@@ -23,7 +23,6 @@ let headers = $request.headers
 delete headers["Host"]
 delete headers["Connection"]
 delete headers["Range"]
-if ($response.headers["Content-Range"]) $response.headers["Content-Range"] = `bytes 0-${$response.headers["Content-Length"] - 1}/${$response.headers["Content-Length"]}`
 
 /***************** Processing *****************/
 !(async () => {
@@ -95,6 +94,7 @@ if ($response.headers["Content-Range"]) $response.headers["Content-Range"] = `by
 			async function combineText(text1, text2, position) { return (position == "Forward") ? text2 + "\n" + text1 : (position == "Reverse") ? text1 + "\n" + text2 : text2 + "\n" + text1; }
 		};
 		$response.body = VTT.stringify(DualSub);
+		if ($response.headers["Content-Range"]) $response.headers["Content-Range"] = `bytes 0-${$response.body.length - 1}/${$response.body.length}`
 		$.done($response)
 	}
 })()
