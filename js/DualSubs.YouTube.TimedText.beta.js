@@ -18,11 +18,12 @@ if (method == "OPTIONS") $.done();
 const headers = $request.headers
 
 var body
-if (typeof $response !== "undefined") body = $response.body
-else $.done($request);
+if (typeof $response == "undefined") $.done($request);
 
 /***************** Processing *****************/
 !(async () => {
+	if (typeof $response !== "undefined") body = $response.body
+	else $.done($request);
 	[$.Platform, $.Verify, $.Advanced, $.Settings, $.Cache] = await setENV(url, DataBase);
 	if ($.Settings.Switch) {
 		// 创建双语字幕JSON
