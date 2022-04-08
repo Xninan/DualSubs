@@ -33,7 +33,7 @@ var body = $response.body
 			let OriginSub = await $.http.get(request, response => JSON.parse(response.body));
 			DualSub = await CombineDualSubs(OriginSub, SecondSub, 0, $.Settings.Tolerance, [$.Settings.Position]);
 		} else { // 未选
-			let langcode = DataBase?.Languages?.[$.Platform]?.[$.Settings.Language[0]]
+			let langcode = DataBase?.Languages?.[$.Platform]?.[$.Settings.Languages[0]]
 			let request = {
 				"url": processQuery(url, "tlang", langcode), // 翻译字幕
 				"headers": headers
